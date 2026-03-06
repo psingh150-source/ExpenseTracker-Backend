@@ -65,7 +65,8 @@ public class UserService {
     }
 
     public Double getMonthlyTotal() {
-        return repo.getMonthlyTotal();
+        Double total = repo.getMonthlyTotal();
+        return total == null ? 0.0 : total;
     }
 
     public List<UserModel> getByTitle(String title) {
