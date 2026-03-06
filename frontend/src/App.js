@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getExpenses, getTotalExpense, getMonthlyTotal } from "./services/api";
+import { getExpenses, getTotalExpense, getCategoryTotal } from "./services/api";
 
 import AddExpense from "./components/AddExpense";
 import ExpenseList from "./components/ExpenseList";
@@ -9,7 +9,7 @@ function App() {
 
   const [expenses, setExpenses] = useState([]);
   const [total, setTotal] = useState(0);
-  const [monthly, setMonthly] = useState(0);
+  const [categoryTotals, setCategoryTotals] = useState({});
 
   const loadData = async () => {
     const data = await getExpenses();
@@ -18,8 +18,9 @@ function App() {
     const totalData = await getTotalExpense();
     setTotal(totalData);
 
-    const monthlyData = await getMonthlyTotal();
-    setMonthly(monthlyData);
+    const categoryData = await getCategoryTotal();
+    setCategoryTotals(categoryData);
+
   };
 
   useEffect(() => {
@@ -31,7 +32,7 @@ function App() {
 
       <h1>Expense Tracker</h1>
 
-      <Dashboard total={total}/>
+      <Dashboard total1={total} categoryTotals1={categoryTotals}/>
 
 
       <AddExpense refresh={loadData} />

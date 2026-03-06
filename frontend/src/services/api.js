@@ -25,12 +25,6 @@ export const getTotalExpense = async () => {
   return res.json();
 };
 
-export const getMonthlyTotal = async () => {
-  const res = await fetch(`${BASE_URL}/monthly-total`);
-  const text = await res.text();
-  return text ? JSON.parse(text) : 0;
-};
-
 export const getCategoryTotal = async () => {
   const res = await fetch(`${BASE_URL}/category-total`);
   return res.json();

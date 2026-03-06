@@ -8,6 +8,7 @@ function Filters({ setExpenses }) {
   const [category, setCategory] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
+  const today = new Date().toISOString().split("T")[0];
 
   const searchByTitle = async () => {
     const res = await fetch(`${BASE_URL}/search?title=${title}`);
@@ -64,15 +65,19 @@ function Filters({ setExpenses }) {
 
       <div>
 
-        <input
-          type="date"
-          onChange={(e) => setStart(e.target.value)}
-        />
+       <input
+         type="date"
+         max={today}              // prevent selecting future dates
+         value={start}
+         onChange={(e) => setStart(e.target.value)}
+       />
 
-        <input
-          type="date"
-          onChange={(e) => setEnd(e.target.value)}
-        />
+       <input
+         type="date"
+         max={today}              // prevent selecting future dates
+         value={end}
+         onChange={(e) => setEnd(e.target.value)}
+       />
 
         <button onClick={filterByDate}>Filter Date</button>
 

@@ -17,6 +17,8 @@ function AddExpense({ refresh }) {
 
     refresh();   // reload data
   };
+  const today = new Date().toISOString().split("T")[0];
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -42,12 +44,12 @@ function AddExpense({ refresh }) {
         }
       />
 
-      <input
-        type="date"
-        onChange={(e) =>
-          setExpense({ ...expense, date: e.target.value })
-        }
-      />
+<input
+  type="date"
+  max={today}              // cannot select future date
+  onChange={(e) => setExpense({ ...expense, date: e.target.value })}
+/>
+
 
       <button type="submit">Add Expense</button>
     </form>
