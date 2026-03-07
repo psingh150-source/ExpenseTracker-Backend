@@ -18,9 +18,12 @@ function App() {
     const totalData = await getTotalExpense();
     setTotal(totalData);
 
-    const categoryData = await getCategoryTotal();
-    setCategoryTotals(categoryData);
 
+
+
+      const categoryData = await getCategoryTotal();
+      console.log("Fetched categories:", categoryData);
+       setCategoryTotals({...categoryData});
   };
 
   useEffect(() => {
